@@ -19,9 +19,9 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p ${HOME}/.ssh/ && \
   echo "${SSH_PRIVATE_KEY}" > ${HOME}/.ssh/id_rsa && \
   chmod 0600 ${HOME}/.ssh/id_rsa && \
-  ssh-keyscan git.fastcloud.fwb >> ${HOME}/.ssh/known_hosts
+  ssh-keyscan my.git >> ${HOME}/.ssh/known_hosts
 
-ADD scripts/start_nextcloud.sh /start_nextcloud.sh
+ADD scripts/start.sh /start.sh
 
 # Add the patched entrypoint to take care about our
 # modifications on the main nextcloud tree
@@ -31,10 +31,7 @@ ADD scripts/entrypoint.sh /entrypoint.sh
 #ADD scripts/config.php /var/www/html/config/config.php
 ADD scripts/ports.conf /etc/apache2/ports.conf
 
-RUN chmod +x /start_nextcloud.sh /entrypoint.sh
-
-#ADD FASTWEB THEME  -- 10-04-2019 tema deployato con jenkins
-#RUN git clone gogs@git.fastcloud.fwb:WOWSpace/nextcloud-theme.git /usr/src/nextcloud/themes/fastweb-theme
+RUN chmod +x /start.sh /entrypoint.sh
 
 # remove credentials
 RUN rm ${HOME}/.ssh/id_rsa
@@ -43,4 +40,4 @@ ONBUILD RUN apt update
 
 EXPOSE 8080 8443
 
-ENTRYPOINT ["/start_nextcloud.sh"]
+ENTRYPOINT ["/start.sh"]
