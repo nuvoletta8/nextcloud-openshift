@@ -19,6 +19,17 @@ oc new-project $PROJECT
 ```
 oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud | oc create -f -
 ```
+Note: if you have errors about the rc, try to scale up the rc
+
+```
+oc scale replicationcontroller mariadb-1 --replicas=1
+```
+Note2: if you have errors about Readiness probe that are not properly configured, delete the current pod and the new pod will not have 
+
+```
+oc delete po mariadb-1-xxxxx
+```
+
 
 ### 2 Deploy Nextcloud
 
