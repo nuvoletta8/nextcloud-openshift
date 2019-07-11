@@ -23,7 +23,7 @@ oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud | oc crea
 ### 2 Deploy Nextcloud
 
 ```
-oc process -f https://raw.githubusercontent.com/tobru/nextcloud-openshift/master/nextcloud.yaml -p NEXTCLOUD_HOST=nextcloud.example.com | oc -n $PROJECT create -f -
+oc process -f nextcloud.yaml -p NEXTCLOUD_HOST=nextcloud.example.com | oc -n $PROJECT create -f -
 ```
 
 #### Template parameters
