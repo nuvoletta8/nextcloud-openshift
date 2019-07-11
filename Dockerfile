@@ -1,6 +1,6 @@
 FROM nextcloud-15.0.8:latest
 
-LABEL maintainer="Barbara Bonfiglio"
+LABEL maintainer="nuvoletta8"
 
 RUN apt-get update && apt-get install -y \
     curl \
