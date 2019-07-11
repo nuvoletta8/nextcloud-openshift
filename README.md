@@ -17,7 +17,7 @@ oc new-project $PROJECT
 ### 1 Deploy Database
 
 ```
-oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud | oc -n $PROJECT create -f -
+oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud | oc create -f -
 ```
 
 ### 2 Deploy Nextcloud
